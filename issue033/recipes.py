@@ -20,8 +20,6 @@ cursor.execute(sql)
 '''
 
 sql = 'INSERT INTO Recipes (name, servings, source) VALUES ("Spanish Rice", "4", "Greg Walters")'
-#sql = 'INSERT INTO Recipes (name, servings, source) VALUES ("Spanish Rice”, 4, "Greg Walters")'
-#sql = 'INSERT INTO Recipes (name, servings, source) VALUES (“Spanish Rice”, "4", ”Greg Walters")'
 cursor.execute(sql)
 
 sql = 'SELECT last_insert_rowid()'
@@ -32,8 +30,6 @@ for x in cursor.execute(sql):
     print ("lastid = ", lastid)
 
 # First the instructions
-#sql = 'INSERT INTO Instructions (recipeID, instructions) VALUES (0, "DO IT")'
-#    + 'VALUES (%s, "DO IT")'
 sql = 'INSERT INTO Instructions (recipeID, instructions) ' \
     + 'VALUES (%s, "Brown hamburger. Stir in all other ingredients. " \
     + "Bring to a boil.  Stir.  Lower to simmer. " \
