@@ -39,5 +39,6 @@ cursor.execute(sql)
 
 # Now the ingredients
 sql = 'INSERT INTO Ingredients (recipeID,ingredients) '\
-    + 'VALUES ( %s, "1 cup parboiled Rice (uncooked)")' % lastid
+    + 'VALUES ( %s, "1 cup parboiled Rice (uncooked)")' \
+    % lastid
 cursor.execute(sql)
