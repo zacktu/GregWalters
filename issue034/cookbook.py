@@ -15,7 +15,6 @@ class Cookbook:
 
 def Menu():
     cbk = Cookbook() # Initialize the class
-    print ("cookbook class has been instantiated.")
 
     loop = True
     while loop == True:
@@ -52,6 +51,4 @@ def Menu():
         else:
             print('Unrecognized command. Try again.')
 
-print ("Now invoke Menu")
 Menu()
-print ("Returned from Menu")
