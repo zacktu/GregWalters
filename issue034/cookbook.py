@@ -13,27 +13,27 @@ class Cookbook:
 
     def PrintAllRecipes(self):
         print("Entering printAllRecipes")
-        pass
+        return
 
     def SearchForRecipes(self):
         print("Entering SearchForRecipes")
-        pass
+        return
 
     def PrintSingleRecipe(self, which) :
         print("Entering PrintSingleRecipe with argument", which)
-        pass
+        return
 
     def DeleteRecipe(self, which):
         print("Entering DeleteRecipe with argument", which)
-        pass
+        return
 
     def EnterNew(self):
         print("Entering EnterNew")
-        pass
+        return
 
     def PrintOut(self, which):
         print("Entering PrintOut with argument", which)
-        pass
+        return
 
     def __init__(self):
         pass
@@ -64,20 +64,16 @@ def Menu():
             cbk.SearchForRecipes()
         elif response == '3': # Show a single recipe
             cbk.PrintSingleRecipe(3)
-            pass
         elif response == '4': # Delete Recipe
             cbk.DeleteRecipe(4)
-            pass
         elif response == '5': # Add a recipe
             cbk.EnterNew()
-            pass
         elif response == '6': # Print a recipe
             cbk.PrintOut(6)
-            pass
         elif response == '0': # Exit the program
             print('Goodbye')
             loop = False
         else:
-            print('Unrecognized command. Try again.')
+            print('Unrecognized command. Enter a number between 0 and 6.')
 
 Menu()
