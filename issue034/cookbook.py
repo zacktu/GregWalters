@@ -13,6 +13,19 @@ class Cookbook:
 
     def PrintAllRecipes(self):
         print("Entering printAllRecipes")
+        print('%s %s %s %s' \
+            % ('Item'.ljust(5), 'Name'.ljust(30), \
+               'Serves'.ljust(20), 'Source'.ljust(30)))
+        print('---------------------------------')
+        sql = 'SELECT * FROM Recipes'
+        cntr = 0
+        for x in cursor.execute(sql):
+            cntr += 1
+            print('%s %s %s %s' \
+                % (str(x[0]).rjust(5), x[1].ljust(30), \
+                   x[2].ljust(20), x[3].ljust(30)))
+        print('---------------------------------')
+        self.totalcount = cntr
         return
 
     def SearchForRecipes(self):
@@ -36,7 +49,12 @@ class Cookbook:
         return
 
     def __init__(self):
-        pass
+        global connection
+        global cursor
+        self.totalcount = 0
+        connection = apsw.Connection(
+            "cookbook3.db3")
+        cursor = connection.cursor()
 
 def Menu():
     cbk = Cookbook() # Initialize the class
