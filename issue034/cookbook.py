@@ -19,6 +19,22 @@ class Cookbook:
         print("Entering SearchForRecipes")
         pass
 
+    def PrintSingleRecipe(self, which) :
+        print("Entering PrintSingleRecipe with argument", which)
+        pass
+
+    def DeleteRecipe(self, which):
+        print("Entering DeleteRecipe with argument", which)
+        pass
+
+    def EnterNew(self):
+        print("Entering EnterNew")
+        pass
+
+    def PrintOut(self, which):
+        print("Entering PrintOut with argument", which)
+        pass
+
     def __init__(self):
         pass
 
@@ -47,31 +63,21 @@ def Menu():
         elif response == '2': # Search for a recipe
             cbk.SearchForRecipes()
         elif response == '3': # Show a single recipe
+            cbk.PrintSingleRecipe(3)
             pass
         elif response == '4': # Delete Recipe
+            cbk.DeleteRecipe(4)
             pass
         elif response == '5': # Add a recipe
+            cbk.EnterNew()
             pass
         elif response == '6': # Print a recipe
+            cbk.PrintOut(6)
             pass
         elif response == '0': # Exit the program
             print('Goodbye')
             loop = False
         else:
             print('Unrecognized command. Try again.')
-
-    '''
-    def PrintSingleRecipe(self, which) :
-        pass
-
-    def DeleteRecipe(self, which):
-        pass
-
-    def EnterNew(self):
-        pass
-
-    def PrintOut(self, which):
-        pass
-    '''
 
 Menu()
