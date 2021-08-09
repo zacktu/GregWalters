@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 #------------------------------------------------------
 # Cookbook.py
@@ -9,6 +10,14 @@ import string
 import webbrowser
 
 class Cookbook:
+
+    def PrintAllRecipes(self):
+        print("Entering printAllRecipes")
+        pass
+
+    def SearchForRecipes(self):
+        print("Entering SearchForRecipes")
+        pass
 
     def __init__(self):
         pass
@@ -34,9 +43,9 @@ def Menu():
             '===================================================')
         response = input('Enter a selection -> ')
         if response == '1': # Show all recipes
-            pass
+            cbk.PrintAllRecipes()
         elif response == '2': # Search for a recipe
-            pass
+            cbk.SearchForRecipes()
         elif response == '3': # Show a single recipe
             pass
         elif response == '4': # Delete Recipe
@@ -50,5 +59,19 @@ def Menu():
             loop = False
         else:
             print('Unrecognized command. Try again.')
+
+    '''
+    def PrintSingleRecipe(self, which) :
+        pass
+
+    def DeleteRecipe(self, which):
+        pass
+
+    def EnterNew(self):
+        pass
+
+    def PrintOut(self, which):
+        pass
+    '''
 
 Menu()
