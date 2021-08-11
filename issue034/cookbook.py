@@ -19,11 +19,11 @@ class Cookbook:
         print('---------------------------------')
         sql = 'SELECT * FROM Recipes'
         cntr = 0
-        for x in cursor.execute(sql):
+        for recipe in cursor.execute(sql):
             cntr += 1
             print('%s %s %s %s' \
-                % (str(x[0]).rjust(5), x[1].ljust(30), \
-                   x[2].ljust(20), x[3].ljust(30)))
+                % (str(recipe[0]).rjust(5), recipe[1].ljust(30), \
+                   recipe[2].ljust(20), recipe[3].ljust(30)))
         print('---------------------------------')
         self.totalcount = cntr
         return
@@ -34,6 +34,32 @@ class Cookbook:
 
     def PrintSingleRecipe(self, which) :
         print("Entering PrintSingleRecipe with argument", which)
+        sql = 'SELECT * FROM Recipes WHERE pkID = "%s"' % str(which)
+        x = cursor.execute(sql)
+        print ('------------------------------------------------------')
+        for x in cursor.execute(sql):
+            recipeid = x[0]
+            print ("RecipeID: ", recipeid)
+            print ("Title: " + x[1])
+            print ("Serves: " + x[2])
+            print ("Source: " + x[3])
+            print ('--------------------------------------------------')
+
+            sql = 'SELECT * FROM Ingredients WHERE RecipeID = % s ' \
+                  % recipeid
+            print ('Ingredient List:')
+            for x in cursor.execute(sql):
+                print (x[1])
+            print ('')
+
+            print ('Instructions:')
+            sql = 'SELECT * FROM Instructions WHERE RecipeID = % s ' \
+                  % recipeid
+            for x in cursor.execute(sql):
+                print (x[1])
+            print ('----------------------------------------------------')
+
+            resp = input('Press a key -> ')
         return
 
     def DeleteRecipe(self, which):
