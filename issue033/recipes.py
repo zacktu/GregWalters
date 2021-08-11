@@ -2,7 +2,7 @@
 import apsw
 
 #Opening/creating database
-connection=apsw.Connection("cookbook3.db3")
+connection=apsw.Connection("cookbook7.db3")
 cursor=connection.cursor()
 
 sql = 'CREATE TABLE Recipes (pkiD INTEGER PRIMARY KEY, \
@@ -10,11 +10,11 @@ sql = 'CREATE TABLE Recipes (pkiD INTEGER PRIMARY KEY, \
 cursor.execute(sql)
 
 sql = 'CREATE TABLE Instructions (pkID INTEGER PRIMARY KEY, \
-      instructions TEXT, recipeID NUMERIC)'
+    instructions TEXT, recipeID NUMERIC)'
 cursor.execute(sql)
 
-sql = 'CREATE TABLE Ingredients (pkID INTEGER PRIMARY KEY, '\
-    + 'ingredients TEXT, recipeID NUMERIC)'
+sql = 'CREATE TABLE Ingredients (pkID INTEGER PRIMARY KEY, \
+    ingredients TEXT, recipeID NUMERIC)'
 cursor.execute(sql)
 
 # INSERT SPANISH RICE
@@ -28,6 +28,26 @@ cursor.execute(sql)
 for x in cursor.execute(sql):
     lastid = x[0]
     print ("lastid = ", lastid)
+
+'''
+sql = 'INSERT INTO Instructions (recipeID, instructions) ' \
+    + 'VALUES (%s, "Brown hamburger. Stir in all other ingredients. " \
+    + "Bring to a boil.  Stir.  Lower to simmer. " \
+    + "Cover and cook for 20 minutes or until all liquid is absorbed.")' \
+      % lastid
+cursor.execute(sql)
+'''
+
+sql = 'INSERT INTO Instructions (recipeID, instructions)' \
+      + 'VALUES (%s, "Brown hamburger. Stir in all other ingredients.  Bring to a boil.  Stir.  Lower to simmer. ")' \
+      % lastid
+cursor.execute(sql)
+
+# Now the ingredients
+sql = 'INSERT INTO Ingredients (recipeID, ingredients) ' \
+      'VALUES (%s, "1 cup parboiled Rice (uncooked)")' \
+      % lastid
+cursor.execute(sql)
 
 # INSERT BOILED MILK
 sql = 'INSERT INTO Recipes (name, servings, source) \

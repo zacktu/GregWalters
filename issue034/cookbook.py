@@ -45,18 +45,18 @@ class Cookbook:
             print ("Source: " + x[3])
             print ('--------------------------------------------------')
 
-            sql = 'SELECT * FROM Ingredients WHERE RecipeID = % s ' \
+            sql = 'SELECT * FROM Ingredients WHERE RecipeID = %s ' \
                   % recipeid
-            print ('Ingredient List:')
+            print('Ingredient List:')
             for x in cursor.execute(sql):
-                print (x[1])
+                print(x[1])
             print ('')
 
-            print ('Instructions:')
-            sql = 'SELECT * FROM Instructions WHERE RecipeID = % s ' \
+            print('Instructions:')
+            sql = 'SELECT * FROM Instructions WHERE RecipeID = %s ' \
                   % recipeid
             for x in cursor.execute(sql):
-                print (x[1])
+                print(x[1])
             print ('----------------------------------------------------')
 
             resp = input('Press a key -> ')
@@ -79,7 +79,7 @@ class Cookbook:
         global cursor
         self.totalcount = 0
         connection = apsw.Connection(
-            "cookbook3.db3")
+            "cookbook7.db3")
         cursor = connection.cursor()
 
 def Menu():
@@ -107,7 +107,7 @@ def Menu():
         elif response == '2': # Search for a recipe
             cbk.SearchForRecipes()
         elif response == '3': # Show a single recipe
-            cbk.PrintSingleRecipe(3)
+            cbk.PrintSingleRecipe(1)
         elif response == '4': # Delete Recipe
             cbk.DeleteRecipe(4)
         elif response == '5': # Add a recipe
