@@ -79,7 +79,7 @@ class Cookbook:
         global cursor
         self.totalcount = 0
         connection = apsw.Connection(
-            "cookbook7.db3")
+            "cookbook8.db3")
         cursor = connection.cursor()
 
 def Menu():

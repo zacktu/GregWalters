@@ -2,7 +2,7 @@
 import apsw
 
 #Opening/creating database
-connection=apsw.Connection("cookbook7.db3")
+connection=apsw.Connection("cookbook8.db3")
 cursor=connection.cursor()
 
 sql = 'CREATE TABLE Recipes (pkiD INTEGER PRIMARY KEY, \
@@ -37,9 +37,9 @@ sql = 'INSERT INTO Instructions (recipeID, instructions) ' \
       % lastid
 cursor.execute(sql)
 '''
-
-sql = 'INSERT INTO Instructions (recipeID, instructions)' \
-      + 'VALUES (%s, "Brown hamburger. Stir in all other ingredients.  Bring to a boil.  Stir.  Lower to simmer. ")' \
+sql = '''INSERT INTO Instructions (recipeID, instructions) \
+      VALUES (%s, "Brown hamburger. Stir in all other ingredients.   \
+      Bring to a boil.  Stir.  Lower to simmer. ")''' \
       % lastid
 cursor.execute(sql)
 
@@ -50,8 +50,8 @@ sql = 'INSERT INTO Ingredients (recipeID, ingredients) ' \
 cursor.execute(sql)
 
 # INSERT BOILED MILK
-sql = 'INSERT INTO Recipes (name, servings, source) \
-    VALUES ("Boiled Milk", "8", "Bob Cannon")'
+sql = '''INSERT INTO Recipes (name, servings, source) \
+    VALUES ("Boiled Milk", "8", "Bob Cannon")'''
 cursor.execute(sql)
 
 sql = 'SELECT last_insert_rowid()'
