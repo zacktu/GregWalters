@@ -107,7 +107,7 @@ def Menu():
         elif response == '2': # Search for a recipe
             cbk.SearchForRecipes()
         elif response == '3': # Show a single recipe
-            cbk.PrintSingleRecipe(1)
+            cbk.PrintSingleRecipe(3)
         elif response == '4': # Delete Recipe
             cbk.DeleteRecipe(4)
         elif response == '5': # Add a recipe
