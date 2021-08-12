@@ -64,6 +64,8 @@ class Cookbook:
 
     def DeleteRecipe(self, which):
         print("Entering DeleteRecipe with argument", which)
+        sql = 'DELETE from Recipes where pkID = "%s"' % str(which)
+        cursor.execute(sql)
         return
 
     def EnterNew(self):
@@ -109,7 +111,7 @@ def Menu():
         elif response == '3': # Show a single recipe
             cbk.PrintSingleRecipe(3)
         elif response == '4': # Delete Recipe
-            cbk.DeleteRecipe(4)
+            cbk.DeleteRecipe(1)
         elif response == '5': # Add a recipe
             cbk.EnterNew()
         elif response == '6': # Print a recipe
