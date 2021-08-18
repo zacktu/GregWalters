@@ -30,7 +30,7 @@ class CmdLine:
 if __name__ == '__main__':
     conn = CmdLine('puccini')
     conn.makeConnection()
-    conn.sendCmd('ls -al')
+    conn.sendCmd('ls -l')
     conn.getResults()
     conn.makeConnection()
     conn.sendCmd('BYE')
