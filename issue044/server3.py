@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#server2.py
+#server3.py
 
 BUF_SIZE = 1024
 
@@ -17,6 +17,7 @@ while True:
     if not data:
         break
     command = data.decode()
+    #ps.open(received)
     outfile = os.popen(command)
     chrfile = outfile.read()
     con.send(chrfile.encode())
