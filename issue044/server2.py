@@ -141,8 +141,9 @@ class ServCmd:
               playerwin = True
               return playerwin
             #check for diagonal win (right to left)
-            elif self.gameboard[0][2] == player and self.gameboard[1][1] == player and \
-                    self.gameboard[2][0] == player:
+            elif self.gameboard[0][2] == player \
+                    and self.gameboard[1][1] == player \
+                    and self.gameboard[2][0] == player:
               print("*********\n\n%s wins\n\n*********" % player)
               playerwin = True
               return playerwin
