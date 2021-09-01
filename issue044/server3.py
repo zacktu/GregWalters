@@ -41,7 +41,7 @@ class ServCmd:
 
     def procCmd(self):
         cmd = self.cli.recv(BUFSIZ).decode()
-        print("IN procCmd cmd = ", cmd)
+        print("In procCmd cmd = %s" % cmd)
         if not cmd:
             return
         print("Received command: ", cmd)
@@ -51,7 +51,7 @@ class ServCmd:
                 print("Command was Start")
                 self.InitGameBoard()
                 print("SHOULD HAVE INITIALIZED BOARD")
-                self.PrintGameBoard(1)
+                self.PrintGameBoard(True)
                 print("SHOULD HAVE PRINTED BOARD")
             if cmd[:4] == 'Move':
                 print("COMMAND WAS MOVE")
@@ -64,26 +64,28 @@ class ServCmd:
                 elif position[0] == 'C':
                     row = 2
                 else:
-                    self.cli.send('Invalid position'.encode())
+                    errormessage = "Error: Row " + position[0] + " is an invalid position."
+                    errormessage = "Error: Row %s is an invalid position." % position[0]
+                    self.cli.send(errormessage.encode())
                     return
                 print("ROW = ", row)
                 col = int(position[1])-1
                 print("COL = ", col)
                 print("Col = %s,Row = %s" % (col,row))
-                if row < 0 or row > 2:
-                    self.cli.send('Invalid position')
+                if col < 0 or col > 2:
+                    errormessage = "Error: Column %s is an invalid position." % position[1]
+                    self.cli.send(errormessage.encode())
                     return
                 if self.gameboard[row][col] == '-':
                     if self.player == 1:
                         self.gameboard[row][col] = "X"
                     else:
                         self.gameboard[row][col] = "O"
-                self.PrintGameBoard(0)
+                self.PrintGameBoard(False)
                 print("Bottom of Move should have printed board")
                 #print("That's all Folks!")
                 #sys.exit()
 
-            
     def servCmd(self,cmd):
         cmd = cmd.strip()
         if cmd == 'GOODBYE':
@@ -94,7 +96,7 @@ class ServCmd:
     def InitGameBoard(self):
         self.gameboard = [['-','-','-'],['-','-','-'],['-','-','-']]
 
-    def PrintGameBoard(self,firsttime):
+    def PrintGameBoard(self, firsttime):
         #Print the header row
         outp = ('   1   2   3') + chr(13) + chr(10)
         outp += (" A {0} | {1} | {2}" \
@@ -112,7 +114,7 @@ class ServCmd:
                         self.gameboard[2][2])) \
                 + chr(13)+chr(10)
         outp += ('  ------------')+ chr(13)+chr(10)
-        if firsttime == 0:
+        if not firsttime:
             if self.player == 1:
                 ret = self.checkwin("X")
             else:

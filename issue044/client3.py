@@ -21,12 +21,11 @@ class CmdLine:
         self.sock.connect(self.ADDR)
 
     def sendCmd(self, cmd):
-        print("SENT CMD = ", cmd)
+        print(cmd)
         self.sock.send(cmd.encode())
 
     def getResults(self):
         data = self.sock.recv(BUFSIZE)
-        print("RECEIVED DATA = :")
         print(data.decode())
 
 if __name__ == '__main__':
@@ -41,5 +40,14 @@ if __name__ == '__main__':
     conn.sendCmd('Move C2')
     conn.getResults()
     conn.sendCmd('Move B3')
+    #conn.sendCmd('Move A1')
+    conn.getResults()
+    conn.sendCmd('Move B5')
+    conn.getResults()
+    conn.sendCmd('Move C1')
+    conn.getResults()
+    conn.sendCmd('Move A3')
+    conn.getResults()
+    conn.sendCmd('Move C3')
     conn.getResults()
     conn.sendCmd('GOODBYE')
