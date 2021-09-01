@@ -41,4 +41,5 @@ if __name__ == '__main__':
     conn.sendCmd('Move C2')
     conn.getResults()
     conn.sendCmd('Move B3')
+    conn.getResults()
     conn.sendCmd('GOODBYE')
