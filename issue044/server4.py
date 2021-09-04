@@ -23,6 +23,7 @@ class ServCmd:
        self.run()
 
     def run(self):
+        print("ENTERING run")
         self.listeningloop = True
         while self.listeningloop:
             print("INSIDE while self.listeningloop")
@@ -34,6 +35,8 @@ class ServCmd:
             self.cli.close()
             print("WILL CLOSE self.serv")
         self.serv.close()
+        print('SERVER IS CLOSED')
+        print("SERVER IS CLOSED")
 
     def listen(self):
         self.serv.listen(5)
