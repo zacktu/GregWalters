@@ -53,13 +53,15 @@ if __name__ == '__main__':
     while True:
         action = input()
         print("ACTION IS %s" % action)
-        action = processActions.checkAction(action)
+        checkedAction = processActions.checkAction(action)
         print ('checkAction has returned %s ' % action)
-        if action == 'GOODBYE':
+        if checkedAction == 'GOODBYE':
             conn.sendCmd(action)
             break
+        elif checkedAction == 'Invalid':
+            print('\r%s is not a valid action.  Enter another.' % action)
         else:
-            conn.sendCmd(action)
+            conn.sendCmd(checkedAction)
             conn.getResults()
 
     print("That's all folks!")
