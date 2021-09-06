@@ -23,48 +23,32 @@ class ServCmd:
        self.run()
 
     def run(self):
-        #print("ENTERING run")
         self.listeningloop = True
         while self.listeningloop:
-            #print("INSIDE while self.listeningloop")
             self.listen()
             self.processingloop = True
             while self.processingloop:
-                #print("INSIDE while self.processingloop")
                 self.procCmd()
             self.cli.close()
-            #print("WILL CLOSE self.serv")
         self.serv.close()
-        #print('SERVER IS CLOSED')
-        #print("SERVER IS CLOSED")
 
     def listen(self):
         self.serv.listen(5)
         print('Listening for Client')
         cli,addr = self.serv.accept()
         self.cli = cli
-        #print('Connected to ', addr)
 
     def procCmd(self):
-        #print("ENTERING procCmd")
         cmd = self.cli.recv(BUFSIZ).decode()
-        #print("In procCmd cmd = %s" % cmd)
         if not cmd:
-            #print("CMD NOT AVAILABLE WILL RETURN")
             return
-        #print("Received command: ", cmd)
         self.servCmd(cmd)
         if self.processingloop:
             if cmd == 'Start':
-                #print("Command was Start")
                 self.InitGameBoard()
-                #print("SHOULD HAVE INITIALIZED BOARD")
                 self.PrintGameBoard(True)
-                #print("SHOULD HAVE PRINTED BOARD")
             if cmd[:4] == 'Move':
-                #print("COMMAND WAS MOVE")
                 position = cmd[5:]
-                #print("Position = " + position)
                 if position[0] == 'A':
                     row = 0
                 elif position[0] == 'B':
@@ -76,10 +60,7 @@ class ServCmd:
                     errormessage = "Error: Row %s is an invalid position." % position[0]
                     self.cli.send(errormessage.encode())
                     return
-                #print("ROW = ", row)
                 col = int(position[1])-1
-                #print("COL = ", col)
-                #print("Col = %s,Row = %s" % (col,row))
                 if col < 0 or col > 2:
                     errormessage = "Error: Column %s is an invalid position." % position[1]
                     self.cli.send(errormessage.encode())
@@ -90,9 +71,6 @@ class ServCmd:
                     else:
                         self.gameboard[row][col] = "O"
                 self.PrintGameBoard(False)
-                #print("Bottom of Move should have printed board")
-                #print("That's all Folks!")
-                #sys.exit()
 
     def servCmd(self,cmd):
         cmd = cmd.strip()

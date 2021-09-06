@@ -21,7 +21,6 @@ class CmdLine:
         self.sock.connect(self.ADDR)
 
     def sendCmd(self, cmd):
-        #print(cmd)
         self.sock.send(cmd.encode())
 
     def getResults(self):
@@ -30,17 +29,13 @@ class CmdLine:
 
 class procActions:
     def checkAction(self, action):
-        #print('Entering checkAction with action = %s ' % action)
         if action == 'GOODBYE':
-            #print('checkAction will return %s ' % action)
             return action
         elif len(action) == 2 \
                 and action[0] in 'ABC' \
                 and action[1] in '123':
-            #print('checkAction will return %s ' % action)
             return 'Move ' + action
         else:
-            #print('checkAction will return %s ' % action)
             return 'Invalid'
 
 if __name__ == '__main__':
@@ -52,9 +47,7 @@ if __name__ == '__main__':
 
     while True:
         action = input()
-        #print("ACTION IS %s" % action)
         checkedAction = processActions.checkAction(action)
-        #print ('checkAction has returned %s ' % action)
         if checkedAction == 'GOODBYE':
             conn.sendCmd(action)
             break
