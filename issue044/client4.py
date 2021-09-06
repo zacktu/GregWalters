@@ -12,7 +12,7 @@ BUFSIZE = 4096
 class CmdLine:
     def __init__(self,host):
         self.HOST = host
-        self.PORT = 29876
+        self.PORT = 29877
         self.ADDR = (self.HOST,self.PORT)
         self.sock = None
 
@@ -30,7 +30,18 @@ class CmdLine:
 
 class procActions:
     def checkAction(self, action):
-        return action
+        print('Entering checkAction with action = %s ' % action)
+        if action == 'GOODBYE':
+            print('checkAction will return %s ' % action)
+            return action
+        elif len(action) == 2 \
+                and action[0] in 'ABC' \
+                and action[1] in '123':
+            print('checkAction will return %s ' % action)
+            return 'Move ' + action
+        else:
+            print('checkAction will return %s ' % action)
+            return 'Invalid'
 
 if __name__ == '__main__':
     conn = CmdLine('localhost')

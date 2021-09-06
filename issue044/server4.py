@@ -8,7 +8,7 @@ import os
 
 BUFSIZ = 4096
 HOST = ''
-PORT = 29876
+PORT = 29877
 ADDR = (HOST,PORT)
 
 class ServCmd:
