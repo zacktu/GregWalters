@@ -28,14 +28,22 @@ class CmdLine:
         data = self.sock.recv(BUFSIZE)
         print(data.decode())
 
+class procActions:
+    def checkAction(self, action):
+        return action
+
 if __name__ == '__main__':
     conn = CmdLine('localhost')
     conn.makeConnection()
     conn.sendCmd('Start')
     conn.getResults()
+    processActions = procActions()
+
     while True:
         action = input()
         print("ACTION IS %s" % action)
+        action = processActions.checkAction(action)
+        print ('checkAction has returned %s ' % action)
         if action == 'GOODBYE':
             conn.sendCmd(action)
             break
