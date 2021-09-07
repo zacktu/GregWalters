@@ -20,5 +20,6 @@ class App:
         print("Hello to FullCircle Magazine Readers!!!!!!!!!!")
 
 root = Tk()
+root.geometry('250x175+50+250')
 app = App(root)
 root.mainloop()
