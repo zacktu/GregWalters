@@ -1,7 +1,7 @@
 from tkinter import *
 
 def StartUp():
-    global val, w, root
+    #global val, w, root
     root = Tk()
     root.title('Easy Calc')
     root.geometry('247x330+469+199')
@@ -22,7 +22,8 @@ class Calculator():
         self.PlaceWidgets(master)
 
     def DefineWidgets(self, master):
-        self.lblDisplay = Label(master, anchor=E, relief=SUNKEN, bg="white", height=2, textvariable=self.CurrentDisplay)
+        self.lblDisplay = Label(master, anchor=E, relief=SUNKEN, \
+                bg="white", height=2, textvariable=self.CurrentDisplay)
         self.btn1 = Button(master, text='1', width=4, height=3)
         self.btn1.bind('<ButtonRelease-1>', lambda e: self.funcNumButton(1))
         self.btn2 = Button(master, text='2', width=4, height=3)
@@ -44,25 +45,34 @@ class Calculator():
         self.btn0 = Button(master, text='0', width=4, height=3)
         self.btn0.bind('<ButtonRelease-1>', lambda e: self.funcNumButton(0))
         self.btnDash = Button(master, text='-', width=4, height=3)
-        self.btnDash.bind('<ButtonRelease-1>', lambda e: self.funcFuncButton('ABS'))
+        self.btnDash.bind('<ButtonRelease-1>', \
+                          lambda e: self.funcFuncButton('ABS'))
         self.btnDot = Button(master, text='.', width=4, height=3)
-        self.btnDot.bind('<ButtonRelease-1>', lambda e: self.funcFuncButton('Dec'))
+        self.btnDot.bind('<ButtonRelease-1>', \
+                         lambda e: self.funcFuncButton('Dec'))
         self.btnPlus = Button(master, text='+', width=4, height=3)
-        self.btnPlus.bind('<ButtonRelease-1>', lambda e: self.funcFuncButton('Add'))
+        self.btnPlus.bind('<ButtonRelease-1>', \
+                          lambda e: self.funcFuncButton('Add'))
         self.btnMinus = Button(master, text='-', width=4, height=3)
-        self.btnMinus.bind('<ButtonRelease-1>', lambda e: self.funcFuncButton('Subtract'))
+        self.btnMinus.bind('<ButtonRelease-1>', \
+                           lambda e: self.funcFuncButton('Subtract'))
         self.btnStar = Button(master, text='*', width=4, height=3)
-        self.btnStar.bind('<ButtonRelease-1>', lambda e: self.funcFuncButton('Multiply'))
+        self.btnStar.bind('<ButtonRelease-1>', \
+                          lambda e: self.funcFuncButton('Multiply'))
         self.btnDiv = Button(master, text='/', width=4, height=3)
-        self.btnDiv.bind('<ButtonRelease-1>', lambda e: self.funcFuncButton('Divide'))
+        self.btnDiv.bind('<ButtonRelease-1>', \
+                         lambda e: self.funcFuncButton('Divide'))
         self.btnEqual = Button(master, text='=')
-        self.btnEqual.bind('<ButtonRelease-1>', lambda e: self.funcFuncButton('Eq'))
+        self.btnEqual.bind('<ButtonRelease-1>', \
+                           lambda e: self.funcFuncButton('Eq'))
         self.btnClear = Button(master, text='CLEAR')
-        self.btnClear.bind('<ButtonRelease-1>', lambda e: self.funcClear())
+        self.btnClear.bind('<ButtonRelease-1>', \
+                           lambda e: self.funcClear())
 
     def PlaceWidgets(self, master):
         master.grid(column=0, row=0)
-        self.lblDisplay.grid(column=0, row=0, columnspan=4, sticky=EW)
+        self.lblDisplay.grid(column=0, row=0, \
+                             columnspan=4, sticky=EW)
         self.btn1.grid(column=0, row=1)
         self.btn2.grid(column=1, row=1)
         self.btn3.grid(column=2, row=1)
@@ -79,13 +89,16 @@ class Calculator():
         self.btnMinus.grid(column=3, row=2)
         self.btnStar.grid(column=3, row=3)
         self.btnDiv.grid(column=3, row=4)
-        self.btnEqual.grid(column=0, row=5, columnspan=4, sticky=NSEW)
-        self.btnClear.grid(column=0, row=6, columnspan=4, sticky=NSEW)
+        self.btnEqual.grid \
+            (column=0, row=5, columnspan=4, sticky=NSEW)
+        self.btnClear.grid \
+            (column=0, row=6, columnspan=4, sticky=NSEW)
 
     def funcNumButton(self, val):
         if self.DecimalNext == True:
             self.DecimalCount += 1
-            self.CurrentValue = self.CurrentValue + (val * (10 ** -self.DecimalCount))
+            self.CurrentValue = self.CurrentValue + \
+                                (val * (10 ** -self.DecimalCount))
         else:
             self.CurrentValue = (self.CurrentValue * 10) + val
         self.DisplayIt()
@@ -124,17 +137,20 @@ class Calculator():
                 if self.CurrentFunction == 'Add':
                     self.CurrentValue += self.HolderValue
                 elif self.CurrentFunction == 'Subtract':
-                    self.CurrentValue = self.HolderValue - self.CurrentValue
+                    self.CurrentValue = \
+                        self.HolderValue - self.CurrentValue
                 elif self.CurrentFunction == 'Multiply':
                     self.CurrentValue *= self.HolderValue
                 elif self.CurrentFunction == 'Divide':
-                    self.CurrentValue = self.HolderValue / self.CurrentValue
+                    self.CurrentValue = \
+                        self.HolderValue / self.CurrentValue
                 self.DisplayIt()
                 self.CurrentValue = 0
                 self.HolderValue = 0
 
     def DisplayIt(self):
-        print('CurrentValue = {0} - HolderValue = {1}'.format(self.CurrentValue, self.HolderValue))
+        print('CurrentValue = {0} - HolderValue = \
+                {1}'.format(self.CurrentValue, self.HolderValue))
         self.CurrentDisplay.set(self.CurrentValue)
 
 if __name__ == '__main__':
